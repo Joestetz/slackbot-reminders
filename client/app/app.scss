@@ -7,7 +7,56 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 /**
  * App-wide Styles
  */
+ 
+$font-family-standard: 'Open Sans Condensed', sans-serif;
+$font-family-fancy: 'Lobster', cursive;
+$font-family-crisp: 'Lato', sans-serif;
 
+$color-orange: #E88924;
+$color-red: #C5352D;
+
+html {
+	overflow-y: scroll;
+}
+
+body {
+	font-family: $font-family-standard;
+	font-size: 20px;
+	
+	.navbar, .btn {
+		font-family: $font-family-crisp;
+		font-size: 16px;
+	}
+  
+  .btn-default:hover {
+    color: #FFF;
+    background-color: $color-red;
+  }
+}
+
+h1, h2, h3, h4, h5, h6, 
+.h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: $font-family-standard;
+	
+	&.fancy {
+		font-family: $font-family-fancy;
+	}
+  
+  &.crisp {
+		font-family: $font-family-crisp;
+	}
+}
+
+::selection {
+	color: #FFF;
+	background-color: $color-red;
+}
+
+::-moz-selection {
+	color: #FFF;
+	background-color: $color-red;
+}
+ 
 .browsehappy {
     margin: 0.2em 0;
     background: #ccc;
@@ -17,7 +66,6 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 
 // Component styles are injected through grunt
 // injector
-@import 'account/login/login.scss';
-@import 'admin/admin.scss';
 @import 'main/main.scss';
+@import 'navbar/navbar.scss';
 // endinjector
