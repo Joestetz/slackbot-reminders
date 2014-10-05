@@ -93,6 +93,22 @@ h1, h2, h3, h4, h5, h6,
   margin-top: 70px;
   border-top: 1px solid #E5E5E5;
 }
+
+.form-control {
+  font-size: 18px;
+}
+
+.form-control[type="checkbox"] {
+  box-shadow: none;
+  border: none;
+  width: 14px;
+  height: 14px;
+  margin-top: 12px;
+  
+  &:focus {
+    border: none;
+  }
+}
  
 .browsehappy {
     margin: 0.2em 0;
