@@ -28,6 +28,7 @@
         float: left;
         position: static;
         border-right: 1px solid #DDD;
+        overflow-y: auto;
       }
       
       >.col-md-8 {
@@ -53,15 +54,35 @@
     padding-top: 20px;
   }
   
+  .form-control {
+    font-size: 18px;
+  }
+  
   .form-control[type="checkbox"] {
     box-shadow: none;
     border: none;
-    width: 18px;
-    height: 18px;
-    margin-top: 10px;
+    width: 14px;
+    height: 14px;
+    margin-top: 12px;
     
     &:focus {
       border: none;
     }
+  }
+  
+  .date-time-picker {
+    width: 200px;
+    
+    .input-group-btn > button {
+      padding-bottom: 4px;
+    }
+  }
+  
+  .timepicker-padding {
+    margin-top: 34px;
+  }
+  
+  .spacer-right {
+    padding-right: 20px;
   }
 }

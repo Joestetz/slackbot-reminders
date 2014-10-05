@@ -6,6 +6,14 @@ angular.module('slackbotRemindersApp')
     return {
       getItems: function (name, token) {
         // TODO: replace this functionality and hardcoded items array with DB fetch
+        var time1 = new Date();
+        time1.setHours(11);
+        time1.setMinutes(45);
+        
+        var time2 = new Date();
+        time2.setHours(14);
+        time2.setMinutes(0);
+        
         var myItems = [{
           title: 'Hardcoded Example 1',
           message: 'This is only a test',
@@ -13,7 +21,7 @@ angular.module('slackbotRemindersApp')
           isActive: true,
           isRepeating: true,
           triggerDate: null,
-          triggerTime: '11:45 PM EST',
+          triggerTime: time1,
           daysOfWeek: [1, 2]
         },{
           title: 'Hardcoded Example 2',
@@ -22,7 +30,7 @@ angular.module('slackbotRemindersApp')
           isActive: false,
           isRepeating: true,
           triggerDate: null,
-          triggerTime: '11:45 PM EST',
+          triggerTime: time1,
           daysOfWeek: [1, 2]
         },{
           title: 'Hardcoded Example 3',

@@ -33,9 +33,86 @@ angular.module('slackbotRemindersApp')
     $scope.save = function(form) {
       $scope.submitted = true;
 
+      $scope.checkValidity(form);
+      
       if(form.$valid) {
         //reminder.saveItem($scope.item);
         alert('placeholder for item saved');
       }
+    };
+    
+    // datepicker
+    $scope.open = function($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+
+      $scope.opened = true;
+    };
+
+    $scope.dateOptions = {
+      formatYear: 'yy',
+      startingDay: 1
+    };
+
+    $scope.format = 'shortDate';
+    
+    // Days of week
+    $scope.toggleDay = function (day, form) {
+      var idx = $scope.item.daysOfWeek.indexOf(day);
+
+      // is currently selected
+      if (idx > -1) {
+        $scope.item.daysOfWeek.splice(idx, 1);
+      }
+
+      // is newly selected
+      else {
+        $scope.item.daysOfWeek.push(day);
+      }
+      
+      // reset validity
+      if($scope.submitted) {
+        $scope.checkValidity(form);
+      }
+    };
+    
+    $scope.daysOfWeek = [{
+      dayValue: 0,
+      shortName: 'Su',
+      longName: 'Sunday'
+    },{
+      dayValue: 1,
+      shortName: 'Mo',
+      longName: 'Monday'
+    },{
+      dayValue: 2,
+      shortName: 'Tu',
+      longName: 'Tuesday'
+    },{
+      dayValue: 3,
+      shortName: 'We',
+      longName: 'Wednesday'
+    },{
+      dayValue: 4,
+      shortName: 'Th',
+      longName: 'Thursday'
+    },{
+      dayValue: 5,
+      shortName: 'Fr',
+      longName: 'Friday'
+    },{
+      dayValue: 6,
+      shortName: 'Sa',
+      longName: 'Saturday'
+    }];
+    
+    $scope.checkValidity = function (form) {
+      form.daysValidate.$setValidity('groupRequired', !$scope.item.isRepeating || 
+        ($scope.item != null 
+        && $scope.item.daysOfWeek != null 
+        && $scope.item.daysOfWeek.length != 0 
+        && $scope.item.isRepeating));
+        
+      form.date.$setValidity('requiredSingle', $scope.item.isRepeating || (!form.date.$error.date && form.date.$viewValue != null));
     };
   });
