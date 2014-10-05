@@ -31,7 +31,9 @@ module.exports = function (grunt) {
       client: require('./bower.json').appPath || 'client',
       dist: 'dist',
       website_dev: '../website/client/showcase/slackbotReminders',
-      website_prod: '../website/dist/public/showcase/slackbotReminders'
+      website_prod: '../website/dist/public/showcase/slackbotReminders',
+      website_server_dev: '../website/server/showcase/slackbotReminders',
+      website_server_prod: '../website/dist/server/showcase/slackbotReminders'
     },
     express: {
       options: {
@@ -163,7 +165,8 @@ module.exports = function (grunt) {
         },
         files: [{
           src: [
-            '<%= yeoman.website_dev %>/*'
+            '<%= yeoman.website_dev %>/*',
+            '<%= yeoman.website_server_dev %>/*'
           ]
         }]
       },
@@ -173,7 +176,8 @@ module.exports = function (grunt) {
         },
         files: [{
           src: [
-            '<%= yeoman.website_prod %>/*'
+            '<%= yeoman.website_prod %>/*',
+            '<%= yeoman.website_server_prod %>/*'
           ]
         }]
       },
@@ -388,6 +392,16 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.dist %>/public',
           dest: '<%= yeoman.website_dev %>',
           src: '**/*'
+        },{
+          expand: true,
+          cwd: '<%= yeoman.dist %>/server/api',
+          dest: '<%= yeoman.website_server_dev %>/api',
+          src: '**/*'
+        },{
+          expand: true,
+          cwd: '<%= yeoman.dist %>/server/config',
+          dest: '<%= yeoman.website_server_dev %>/config',
+          src: '**/*'
         }]
       },
       website_prod: {
@@ -395,6 +409,16 @@ module.exports = function (grunt) {
           expand: true,
           cwd: '<%= yeoman.dist %>/public',
           dest: '<%= yeoman.website_prod %>',
+          src: '**/*'
+        },{
+          expand: true,
+          cwd: '<%= yeoman.dist %>/server/api',
+          dest: '<%= yeoman.website_server_prod %>/api',
+          src: '**/*'
+        },{
+          expand: true,
+          cwd: '<%= yeoman.dist %>/server/config',
+          dest: '<%= yeoman.website_server_prod %>/config',
           src: '**/*'
         }]
       },
