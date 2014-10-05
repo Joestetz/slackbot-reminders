@@ -1,0 +1,55 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div id="mainPage">
+  <header id="banner">
+    <div class="container">
+      <h1 class="crisp">About</h1>
+      <h3>Learn about this little tool and how to use it.</h3>
+    </div>
+  </header>
+
+  <div id="content" class="container">
+    <div class="col-md-12">
+      <h2 class="page-header">Who or what is Slackbot?</h2>
+      <div>
+        <p>
+          Slackbot is <a href="http://slack.com" target="_blank">Slack</a>'s built-in robot. 
+          A key capability offered by Slackbot is to remotely post to a 
+          team's channels via HTTP POST. To read more about it, you can visit 
+          <a href="https://slack.zendesk.com/hc/en-us/articles/202026038-Slackbot-your-setup-assistant-personal-notepad-and-programmable-bot" target="_blank">
+            this post on the sick site
+          </a>.
+        </p>
+      </div>
+    </div>
+    
+    <div class="col-md-12">
+      <h2 class="page-header">How do I use this tool?</h2>
+      <div>
+        <p>
+          The sole purpose of this tool is to configure automatic messages for your 
+          team's channel(s). Currently supported are one-time messages based on a date 
+          and time and repeating messages on a given day of the week at a specific time.
+        </p>
+        <p>
+          To get started, you will need to enable the slackbot integration on your site. 
+          Once enabled, there will be a token available specifically for this integration 
+          that you will need to copy and paste into the home screen of this site. You will
+          also need your team name (subdomain of your URL such as <em>https://<strong>SUBDOMAIN</strong>.slack.com</em>).
+        </p>
+        <p>
+          Once we have those two bits of information, you can manage your existing team 
+          reminders and create new ones.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <footer id="footer">
+    <div class="container">
+      <p>
+        <a href="https://www.facebook.com/joestetz" target="_blank">FB @Joe Stetzer</a> | <a href="/contact">Contact Directly</a>
+      </p>
+    </div>
+  </footer>
+</div>

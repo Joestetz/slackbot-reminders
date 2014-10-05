@@ -3,7 +3,8 @@
 angular.module('slackbotRemindersApp')
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/edit', {
-        templateUrl: 'app/edit/edit.html'
+      .when('/about', {
+        templateUrl: 'app/about/about.html',
+        controller: 'AboutCtrl'
       });
   });

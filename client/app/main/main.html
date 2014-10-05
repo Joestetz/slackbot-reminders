@@ -3,13 +3,13 @@
 <div id="mainPage">
   <header id="banner">
     <div class="container">
-      <h1 class="crisp">Slack Bot Reminders</h1>
-      <h3>Send reminders to your team's slack channels from Slack Bot</h3>
+      <h1 class="crisp">Slackbot Reminders</h1>
+      <h3>Send reminders to your team's slack channels from Slackbot</h3>
     </div>
   </header>
 
   <div id="content" class="container">
-    <h3 class="form-header text-center">Enter your team name and Slack Bot token below to get started.</h3>
+    <h3 class="form-header text-center">Enter your team name and Slackbot token below to get started.</h3>
     <form class="form-horizontal" role="form" name="form" ng-submit="go(form)" novalidate>
     
       <div class="form-group" ng-class="{ 'has-error': form.teamName.$invalid && submitted }">
@@ -20,14 +20,14 @@
       </div>
       
       <div class="form-group" ng-class="{ 'has-error': form.token.$invalid && submitted }">
-        <label for="inputToken" class="col-sm-2 control-label">Slack Bot Token</label>
+        <label for="inputToken" class="col-sm-2 control-label">Slackbot Token</label>
         <div class="col-sm-10">
           <input type="text" class="form-control" id="inputToken" name="token" placeholder="Token" ng-model="token" required>
         </div>
       </div>
       
       <div class="form-group has-error">
-        <p class="help-block" ng-show="(form.teamName.$error.required || form.token.$error.required) && submitted">
+        <p class="help-block col-sm-offset-2 col-sm-10" ng-show="(form.teamName.$error.required || form.token.$error.required) && submitted">
            Please enter a team name and token
         </p>
         <p class="help-block">{{ errors.other }}</p>
