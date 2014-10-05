@@ -6,6 +6,9 @@
           <button type="button" class="btn btn-default" ng-click="back()">Back</button> 
           <span><a class="btn btn-default btn-sm" ng-href="{{teamLink}}" ng-bind="teamLink" target="_blank"></a></span>
         </div>
+        <div class="col-md-12 picker" ng-class="{active: isActive(null)}" ng-click="setActive(null)">
+          New
+        </div>
         <div class="col-md-12 picker" ng-repeat="item in items" ng-class="{active: isActive(item)}" ng-click="setActive(item)">
           {{ item.title }}
         </div>
@@ -100,6 +103,7 @@
             <div class="form-group">
               <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-default">Save</button>
+                <button type="button" class="btn btn-default" ng-click="remove()" ng-hide="!item._id">Delete</button>
               </div>
             </div>
             

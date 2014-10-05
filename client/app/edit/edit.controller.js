@@ -1,10 +1,19 @@
 'use strict';
 
 angular.module('slackbotRemindersApp')
-  .controller('EditList', function ($scope, $location, session, reminder) {
-    var promise = reminder.getItems(session.getTeamName(), session.getToken());
-    promise.then(function(items) {
-      $scope.items = items;
+  .controller('EditList', function ($scope, $location, session, Reminder) {
+    var getItems = function () {
+      $scope.items = Reminder.query({
+        name: session.getTeamName(),
+        token: session.getToken()
+      });
+    };
+    getItems();
+  
+    $scope.$watch(function () {
+      return session.getSelectedItem();
+    }, function (newVal, oldVal) {
+      getItems();
     });
     
     $scope.teamLink = 'https://' + session.getTeamName() + '.slack.com';
@@ -18,10 +27,11 @@ angular.module('slackbotRemindersApp')
     };
     
     $scope.isActive = function (item) {
-      return item == session.getSelectedItem();
+      var comp = session.getSelectedItem();
+      return (!item && !comp) || (item && comp && item._id == comp._id);
     };
   })
-  .controller('EditDetails', function ($scope, session, reminder) {
+  .controller('EditDetails', function ($scope, session, Reminder) {
     $scope.$watch(function () {
       return session.getSelectedItem();
     }, function (newVal, oldVal) {
@@ -36,10 +46,22 @@ angular.module('slackbotRemindersApp')
       $scope.checkValidity(form);
       
       if(form.$valid) {
-        //reminder.saveItem($scope.item);
-        alert('placeholder for item saved');
+        if (!$scope.item._id) {
+          $scope.item.teamName = session.getTeamName();
+          $scope.item.token = session.getToken();
+          Reminder.save($scope.item, function(newItem) {
+            session.setSelectedItem(newItem);
+          });
+        } else {
+          $scope.item.$update();
+        }
       }
     };
+    
+    $scope.remove = function () {
+      $scope.item.$delete();
+      session.setSelectedItem(null);
+    }
     
     // datepicker
     $scope.open = function($event) {
