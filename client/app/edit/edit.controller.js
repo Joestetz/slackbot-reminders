@@ -49,8 +49,11 @@ angular.module('slackbotRemindersApp')
         if (!$scope.item._id) {
           $scope.item.teamName = session.getTeamName();
           $scope.item.token = session.getToken();
+          if ($scope.item.triggerTime == null) $scope.item.triggerTime = new Date();
           Reminder.save($scope.item, function(newItem) {
             session.setSelectedItem(newItem);
+          }, function (err) {
+            alert('Error: ' + err.data.error);
           });
         } else {
           $scope.item.$update();
