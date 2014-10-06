@@ -80,6 +80,10 @@ angular.module('slackbotRemindersApp')
     
     // Days of week
     $scope.toggleDay = function (day, form) {
+      if($scope.item.daysOfWeek == null) {
+        $scope.item.daysOfWeek = [];
+      }
+      
       var idx = $scope.item.daysOfWeek.indexOf(day);
 
       // is currently selected

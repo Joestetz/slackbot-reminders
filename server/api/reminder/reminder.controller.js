@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var Reminder = require('./reminder.model');
+var Scheduler = require('../../config/scheduler');
 
 // Get list of reminders
 exports.index = function(req, res) {
@@ -32,6 +33,7 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
   Reminder.create(req.body, function(err, reminder) {
     if(err) { return handleError(res, err); }
+    Scheduler.add(req.body);
     return res.json(201, reminder);
   });
 };
@@ -43,6 +45,7 @@ exports.update = function(req, res) {
     if (err) { return handleError(res, err); }
     if(!reminder) { return res.send(404); }
     var updated = _.merge(reminder, req.body);
+    Scheduler.update(updated);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.json(200, reminder);
@@ -55,6 +58,7 @@ exports.destroy = function(req, res) {
   Reminder.findById(req.params.id, function (err, reminder) {
     if(err) { return handleError(res, err); }
     if(!reminder) { return res.send(404); }
+    Scheduler.remove(reminder);
     reminder.remove(function(err) {
       if(err) { return handleError(res, err); }
       return res.send(204);

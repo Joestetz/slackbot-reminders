@@ -13,8 +13,8 @@ Reminder.find({}).remove(function() {
   time1.setMinutes(45);
   
   var time2 = new Date();
-  time2.setHours(16);
-  time2.setMinutes(52);
+  time2.setHours(21);
+  time2.setMinutes(3);
   
   Reminder.create({
     teamName: 'test',
