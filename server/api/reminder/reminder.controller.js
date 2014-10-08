@@ -31,9 +31,6 @@ exports.show = function(req, res) {
 
 // Creates a new reminder in the DB.
 exports.create = function(req, res) {
-  if (req.body.teamName.toLowerCase() != 'webtime' && req.body.token != '0qmXikAH8MnSgjbZDDy2LcsS') {
-    return res.status(500).json({ error: 'Only webtime is currently allowed access to this application. Please enter a valid webtime token' });
-  }
   Reminder.create(req.body, function(err, reminder) {
     if(err) { return handleError(res, err); }
     Scheduler.add(req.body);
